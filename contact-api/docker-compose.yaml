@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: hello
+      POSTGRES_DB: sika_db
+    volumes:
+          - ./devtools/postgres-data:/var/lib/postgresql/data
+          - ./devtools/postgres_init.sql:/docker-entrypoint-initdb.d/create_database.sql
+    ports:
+      - '5432:5432'

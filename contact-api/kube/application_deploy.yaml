@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sikacontact
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sikacontact
+  template:
+    metadata:
+      labels:
+        app: sikacontact
+    spec:
+      containers:
+        - name: app
+          image: beulahana/sika_contact:1.0.0
+          ports:
+            - containerPort: 16000
+          env:
+            - name: MONGO_URL
+              value: mongodb://mongo:27017/dev
+          imagePullPolicy: Always
